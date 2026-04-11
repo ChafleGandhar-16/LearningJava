@@ -1,6 +1,6 @@
 class Person {
-    int id;
-    String name;
+    private int id;
+    private String name;
 
 //    Person () {
 //        Default Constructor
@@ -10,6 +10,12 @@ class Person {
         this.id = id; //
         this.name = name;
     }
+    String getName() {
+        return name;
+    }
+    int getId() {
+        return id;
+    }
 }
 
 class Std extends Person {
@@ -17,15 +23,16 @@ class Std extends Person {
     int marks;
     Std (int id, String name, int marks, double percentage) { //It is duty of child class to call the parent class parameterized constructor if no default constructor is present
         super(id, name); //super is used to call the immediate parent constructor
-        this.id = id;
-        this.name = name;
         this.percentage = percentage;
         this.marks = marks;
     };
 
     boolean calculate() {
-        boolean result = (marks/600 == percentage);
-        return result;
+        return ((double)marks/600 == percentage);
+    }
+
+    void show() {
+        System.out.println(getName());
     }
 }
 
@@ -39,7 +46,7 @@ class Show extends Std {
     }
 
     void showAllInfo() {
-        System.out.println(name + " Lives in " + address + " ");
+        System.out.println(getName()+ " Lives in " + address + " ");
         System.out.println("IQ: " + IQ);
         System.out.println("Marks: " + marks);
         System.out.println("Percentage: " + percentage);
