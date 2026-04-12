@@ -1,6 +1,6 @@
 package T1Basics;
 
-public class EscapeCaracters {
+public class EscapeCharacters {
     public static void main(String[] args) {
         System.out.println("123\tABC");
         System.out.println("1\tDEF");

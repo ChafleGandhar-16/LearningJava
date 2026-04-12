@@ -1,4 +1,4 @@
-package T2ConditionAndLoops;
+package T2ConditionsAndLoops;
 
 public class T2Conditions {
     public static void main(String[] args) {

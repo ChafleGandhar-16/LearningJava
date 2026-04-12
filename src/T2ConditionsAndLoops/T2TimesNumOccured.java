@@ -1,4 +1,4 @@
-package T2ConditionAndLoops;
+package T2ConditionsAndLoops;
 
 import java.util.Scanner;
 
