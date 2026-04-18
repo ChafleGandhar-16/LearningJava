@@ -1,0 +1,21 @@
+   Method Overloading                               Method Overriding.
+1) method name must be same.                        Method name must be same
+2) Argument type must be different (at least 1).    Argument type must be same.
+3) Method signature must be different.              Method signature must be same.
+4) return type has no restriction.                  Return type must be the same but this rule
+                                                    is applicable until 1.4 version only. From
+                                                    1.5 version onwards co-variant return types
+                                                    are allowed.
+5) Access modifier has no restriction               Can't reduce the cope of access specifier
+                                                    but we can increase.
+6) Private, static and final method can be          Private, static and final methods can't be
+   overloaded                                       overridden.
+7) throws clause no restriction                     If child class method throws any checked
+                                                    exception compulsory the parent class throws
+                                                    same checked exception otherwise we will get
+                                                    compile time error but there is no restriction
+                                                    for checked exception.
+8) Method resolution is always takes care by        Method resolution is always takes care by JVM
+   compiler based on reference type                 based on runtime object
+9) Also known as compile time polymorphism/static   Also known as run time polymorphism/non-static
+   /early binding                                   /late binding

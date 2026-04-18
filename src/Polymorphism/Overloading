@@ -1,0 +1,108 @@
+          char -> int
+ byte -> short -> int -> long -> float -> double -> object
+ Now Automatic casting/promotion for boolean and String
+
+Case 1:
+class Test {
+    public void m1 (int a) {
+        System.out.println("Integer");
+    }
+    public void m1(float a) {
+        System.out.println("Float");
+    }
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.m1(10); ✅
+        t.m1(10.01f); ✅
+        t.m1('a'); ✅
+        t.m1(10l); ✅
+        t.m1(15.7); ❌
+    }
+}
+
+
+Case 2:
+class Test {
+    public void m1(Object o) {
+        System.out.println("Object");
+    }
+    public void m1(String s) {
+        System.out.println("string");
+    }
+
+    public static void  main(String[] args) {
+        Test t = new Test();
+        t.m1(new Object()); //Object
+        t.m1("Hello"); //String
+ In overloading child argument will get highest priority than parent argument
+ Exactly matched method will get highest priority
+        t.m1(null); //String
+    }
+}
+
+
+Case 3:
+class Test {
+    public void m1 (String s) {
+        System.out.println("String");
+    }
+    public void m1 (StringBuffer s) {
+        System.out.println("StringBuffer");
+    }
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.m1("Hello"); //String
+        t.m1(new StringBuffer("Hello")); //StringBuffer
+        t.m1(null); //Error
+        Complier gets confused. Which method to call as String, String Buffer and String builder all are null by default
+    }
+}
+
+
+Case 4:
+class Test {
+    public void m1(int i) {
+        System.out.println("general");
+    }
+    public void m1(int ... i) { // "..." operator can take 0-infinity variables (introduced in Java 1.5)
+        System.out.println("variable args");
+    }
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.m1();// variable args
+        t.m1(10, 20, 30);// variable args
+        t.m1(10);// general
+         variable arg methods have the least priority
+    }
+}
+
+
+Case 5: Overloading -> reference ko dekho
+class Animal {
+
+}
+class Dog extends Animal {
+
+}
+class Test {
+    public void m1(Animal a) {
+        System.out.println("Animal");
+    }
+    public void m1(Dog d) {
+        System.out.println("Dog");
+    }
+    public static void main (String[] args) {
+        Test t = new Test();
+        Animal a = new Animal();
+        t.m1(a);// Animal
+        Dog d = new Dog();
+        t.m1(d);// Dog
+        Animal n = new Dog();
+        t.m1(n);// Animal
+
+    }
+}
+Parent class Reference can hold child class object
+Overloading-> Jis class ka reference uski method (method resolution (method execution) always takes place by compiler based on reference type in overloading)
+Overriding -> Jiska Object uski Method
+Method Hiding (when both parent and child class methods are static) -> Jis class ka reference uski method

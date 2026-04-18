@@ -1,0 +1,26 @@
+Overriding -> Object dekho
+class Parent {
+    public void property() {
+        System.out.println("property");
+    }
+    public void marriage() {
+        System.out.println("marriage");
+    }
+}
+
+class Remarry extends Parent {
+    public void marriage() {
+        System.out.println("Remarry");
+    }
+}
+
+public class Testing {
+    public static void main(String[] args) {
+        Parent p = new Parent();
+        p.marriage(); //marriage
+        Remarry r = new Remarry();
+        r.marriage(); //Remarry
+        Parent p1 = new Remarry(); //Overriding -> Jiska Object uski Method
+        p1.marriage(); //Remarry
+    }
+}

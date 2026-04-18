@@ -12,3 +12,7 @@ public class T1Premitives {
 
     }
 }
+
+//          char -> int
+// byte -> short -> int -> long -> float -> double -> object
+// Now Automatic casting/promotion for boolean and String

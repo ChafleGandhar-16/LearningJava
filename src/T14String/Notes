@@ -1,0 +1,26 @@
+String:
+ == -> compares the references
+ .equals() -> String class overrides the .equals() method from Object class. Hence, it compares the value.
+
+The .equals() method in Object class compares the references while the .equals() method in String class compares the value
+
+StringBuffer:
+ == -> compares the references
+ .equals() -> StringBuffer doesn't override .equals() method. Hence, it compares the references
+
+String s1 = new String("Hello");
+String s2 = new String("Hello");
+String s3 = "Hello";
+String s4 = "Hello";
+Two objects are defined in Heap but only one object is defined in SCP. SCP doesn't allow duplicate objects.
+Heap objects are eligible for garbage collection but SCP object aren't.
+The garbage collector is called in Heap to clear up the objects. But before deleting each object, finalize() method is called that closes the file/resources
+
+         Heap                       SCP(String Constant Pool)
+
+   s1-> "Hello" <- s2       s3 -> "Hello" <- s4
+
+String s = new String("Pratap"); //Pratap created in heap and SCP. s1 points to Heap Pratap
+s.concat("software"); //software is created in SCP. Pratapsoftware is created in Heap but still s1 points to Pratap
+s = s.concat("solution"); // solution is created in SCP. Pratapsolution is created in Heap, now s1 points to Pratapsolution
+// All literals are created in SCP
