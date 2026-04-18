@@ -1,7 +1,6 @@
 package T5Arrays;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class T5ArrayList {
     public static void main(String[] args) {
@@ -55,6 +54,7 @@ public class T5ArrayList {
             }
             System.out.println();
         }
+
     }
 }
 

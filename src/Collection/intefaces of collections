@@ -1,0 +1,62 @@
+
+Stack(1.0 ver)  ->  Vector(1.0 ver)  ->  List(1.2 ver)  ->  Collection
+                LinkedList(1.2 ver)  ->  List
+                 ArrayList(1.2 ver)  ->  List
+
+ArrayList:
+Resizable and Growable
+Duplicated allowed
+Insertion order is followed
+Heterogeneous objects are allowed (except TreeSet & TreeMap)
+Null insertion possible
+
+LinkedList:
+Double Linked List is the underlying Data Structure
+Insertion order is maintained
+Duplicates are allowed
+Heterogeneous Objects are allowed
+null is allowed
+
+Vector:
+Resizable and growable array
+duplicate objects is allowed
+Insertion order is preserved
+null insertion is possible
+Heterogeneous objects are allowed
+Vector class implemented Serializable, Clonable and RandomAccess interface
+Vector is Thread safe as most of the methods are synchronized
+
+Stack:
+Child class of vector.
+Works on LIFO order.
+
+
+Set:
+Duplication not allowed and Order is not preserved
+TreeSet (1.2 ver) -> NavigableSet (1.6 ver) -> SortedSet (1.2 ver) -> Set (1.2 ver) -> Collection (1.2 ver)
+                    LinkedHashSet (1.4 ver) ->   HashSet (1.2 ver) -> Set
+
+HashSet:
+Hashtable
+Duplicated not allowed.
+Order is not preserved. Inserted based on hashcode
+Heterogeneous are allowed
+null insertion is possible
+implements Serializable, Clonable interfaces but not RandomAccess
+HashSet is the best choice if our frequent is Search Operation
+
+LinkedHashSet:
+Best to develop cache based applications, where duplicates are not allowed and insertion order must be followed.
+Child class of HashSet
+
+            HashSet                                         LinkedHashSet
+1) The underlying data structure is Hash table          The underlying data structure is Hash table + Linked List
+2) Insertion order is not preserved                     Insertion order is preserved
+3) 1.2 ver                                              1.4 ver
+
+TreeSet:
+Data structure: Balanced Tree
+Duplicated are not allowed
+Insertion order doesn't follow but inserted in sorted form
+Heterogeneous not allowed. If tried runtime exception: ClassCastException
+Null insertion is allowed but only once
