@@ -60,3 +60,21 @@ Duplicated are not allowed
 Insertion order doesn't follow but inserted in sorted form
 Heterogeneous not allowed. If tried runtime exception: ClassCastException
 Null insertion is allowed but only once
+
+Map:
+Map isn't a child interface of Collection
+Map-> Key: Value. Both combined known as entry
+Keys and Values are objects
+Duplicated Keys are not allowed but Duplicated Value are allowed
+            LinkedHashMap ->   HashMap -> Map
+TreeMap ->   NavigableMap -> SortedMap -> Map
+                             HashTable -> Map
+
+HashMap:
+HashMap is implemented class of Map interface, clonable and serializable
+HashMap (1.2 ver)
+Underlying data structure -> HashTable
+HashMap contains maximum one null value in key but it can store multiple values in value
+Can store  heterogeneous or different types of element
+Does not follow sorting or insertion order
+Not Synchronized data structure

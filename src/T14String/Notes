@@ -12,15 +12,57 @@ String s1 = new String("Hello");
 String s2 = new String("Hello");
 String s3 = "Hello";
 String s4 = "Hello";
+String s5 = "Hi";
 Two objects are defined in Heap but only one object is defined in SCP. SCP doesn't allow duplicate objects.
 Heap objects are eligible for garbage collection but SCP object aren't.
-The garbage collector is called in Heap to clear up the objects. But before deleting each object, finalize() method is called that closes the file/resources
+The garbage collector is called in Heap to clear up the objects. But before deleting each object, finalize() method is
+called that closes the file/resources
 
-         Heap                       SCP(String Constant Pool)
+         Heap              SCP(String Constant Pool)
 
-   s1-> "Hello" <- s2       s3 -> "Hello" <- s4
+   s1 -> "Hello" <- s2       s3 -> "Hello" <- s4
+                                    s5 -> "Hi"
 
 String s = new String("Pratap"); //Pratap created in heap and SCP. s1 points to Heap Pratap
 s.concat("software"); //software is created in SCP. Pratapsoftware is created in Heap but still s1 points to Pratap
 s = s.concat("solution"); // solution is created in SCP. Pratapsolution is created in Heap, now s1 points to Pratapsolution
 // All literals are created in SCP
+
+While the String Constant Pool (SCP) is unique to strings, other data types have similar "pooling" or "caching"
+mechanisms, though they work differently depending on whether they are primitives or wrapper objects.
+
+1. Primitives (int, char, boolean, etc.)
+Primitives do not use a pool in the heap because they don't live in the heap at all if they are local variables.
+Local primitives are stored directly on the Stack as raw values.
+When you write int a = 10; int b = 10;, the JVM simply pushes the value 10 into two different slots on the stack. There
+is no "sharing" of a single object because there are no objects involved.
+If a primitive is a field inside a class, it lives in the Heap as part of that specific object.
+
+2. Wrapper Classes (Integer, Byte, Character, etc.)
+Wrapper classes have a Cache Pool that works very similarly to the SCP to save memory for frequently used numbers.
+By default, Java caches Integer objects for values between -128 and 127.
+Integer i1 = 100; //(Autoboxing)Reuses a cached object from the pool.
+Integer i2 = 100; //Points to the same cached object.
+Integer i3 = new Integer(100); //Forces a new object in the Heap, bypassing the cache.
+Other Caches:
+Boolean: Caches TRUE and FALSE.
+Byte, Short, Long: Also cache values from -128 to 127.
+Character: Caches the first 128 characters (Unicode 0 to 127).
+
+3. Other Objects (User-defined classes)
+Custom objects (like Customer, ArrayList, etc.) never use a constant pool.
+Every time you use the new keyword, a completely unique object is created in the Heap.
+obj1 == obj2 will always be false for two separate new calls, even if all their internal fields are identical.
+
+ArrayList l1 = new ArrayList<>(); //Creates a new ArrayList object in the General Heap. l1 (on the Stack) holds the
+memory address of this object.
+l1.add(1); //Java uses Autoboxing. It converts the primitive 1 -> Integer.valueOf(1)
+l1.add(true); //true -> Boolean.valueOf(true).
+//1 is fetched from the Integer Cache.
+//true is fetched from the Boolean Cache.
+//The ArrayList now stores references to these cached objects.
+ArrayList l2 = new ArrayList<>(); //Creates a second ArrayList object in the Heap. l2 points to it.
+l2 = l1; //"l2 points to the same address as l1.
+
+The second ArrayList created in Step 3 is now "orphaned" (no one points to it) and becomes eligible for Garbage Collection.
+Now, both l1 and l2 point to the exact same object in the Heap. If you add an item using l2, it will show up when you print l1.
